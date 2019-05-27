@@ -1,0 +1,12 @@
+<div class="header">
+	<div class="logo">
+		<span class="go-back-wrap pointer" (click)="goBack()">
+			<mat-icon *ngIf="router.url != '/user-lists'" class="go-back-btn">keyboard_arrow_left</mat-icon>
+		</span>
+		<div class="go-home-wrap">
+			<a class="simple-text">
+				<h2 class="logoSmall" (click)="gotoHome()"> C<span>P</span>G</h2>
+			</a>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,19 @@
+<div class="sidebar" [ngClass]="{'opened': menu_opened}" data-background-color="black">
+    <div class="sidebar-wrapper nicescrollable">
+        <div class="logo">
+            <!-- <span class="go-back-wrap pointer" (click)="goBack()">
+                <mat-icon class="go-back-btn">keyboard_arrow_left</mat-icon>
+            </span> -->
+            <a class="simple-text">
+                <h2 class="logoSmall" (click)="gotoHome()"> C<span>P</span>G</h2>
+                <span class="sloganSmall"> Donde los jugadores se convierten en estrellas</span>
+            </a>
+        </div>
+        <!-- Filtros -->
+
+        <div class="">
+            <app-filter (filterData)="onFilter($event)" (menuChanged)="onMenuChanged($event)" [search]="search">
+            </app-filter>
+        </div>
+    </div>
+</div>

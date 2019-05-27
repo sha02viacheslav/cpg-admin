@@ -1,0 +1,374 @@
+<div class="user-profile-page-wrap" *ngIf="jugador && userProfileService.images">
+	<div class="lds-roller" *ngIf="!is_details_loaded">
+	</div>
+	<div *ngIf="selectedPlayers.length"
+		class="select-top-box col-lg-12 col-md-12 col-sm-12 col-xs-12 animated delay-0s {{comeOutAnimation}}">
+		<div class="select-player-label fill-remaining-space">
+			{{selectedPlayers? selectedPlayers.length : 0}}&nbsp;Jugadores Sekeccionados
+		</div>
+		<div class="continue-btn-wrap animated delay-0s {{comeOutAnimation}}">
+			<button mat-raised-button class="top-continue-button btn btn-blue btn-fill submitFilters"
+				(click)="confirmPlayer()">
+				CONTINUAR
+			</button>
+		</div>
+	</div>
+	<div class="user-profile-page" *ngIf="is_details_loaded">
+		<div class="first-row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 profile" [ngClass]="{'catagory-box-wrap': !openedCategory[0]}">
+				<div class="icon-box pointer animated delay-0s {{comeOutAnimation}}"
+					[ngClass]="{'openedCategory': openedCategory[0]}" (click)="openedCategory[0]=!openedCategory[0]">
+					<div class="icon-field">
+						<i class="material-icons"> {{iconName[0]}} </i>
+					</div>
+					<div class="text" *ngIf="openedCategory[0]">
+						<p class="name">Perfil</p>
+						<p class="title">Proximamente</p>
+						<p class="title">Ubicación</p>
+						<p>{{getUbicacion(jugador.provincia, jugador.code)}}</p>
+						<p class="title">Pasaporte</p>
+						<p>aaa</p>
+						<p class="title">Fecha de Nacimiento</p>
+						<p>{{jugador.fecha_nacimiento ? jugador.fecha_nacimiento : "24 Abril 1990"}}</p>
+						<p class="title">
+							<span>Edad</span>
+							<span>Altura</span>
+							<span>Peso</span>
+						</p>
+						<p>
+							<span>{{jugador.edad}}</span>
+							<span>{{formatHeight(jugador.altura)}}</span>
+							<span>{{jugador.peso}}</span>
+						</p>
+					</div>
+				</div>
+				<p class="field-name animated delay-0s {{comeOutAnimation}}" *ngIf="!openedCategory[0]">Perfil</p>
+			</div>
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 trayectoria"
+				[ngClass]="{'catagory-box-wrap': !openedCategory[1]}">
+				<div class="icon-box pointer animated delay-0s {{comeOutAnimation}}"
+					[ngClass]="{'openedCategory': openedCategory[1]}" (click)="openedCategory[1]=!openedCategory[1]">
+					<div class="icon-field">
+
+						<img class="material-icons" src="../../app/assets/img/Trayectoria.svg">
+					</div>
+					<div class="text" *ngIf="openedCategory[1]">
+						<p class="name">Trayectoria</p>
+					</div>
+					<div class="contents" *ngIf="openedCategory[1]">
+						{{jugador.club}}
+					</div>
+				</div>
+				<p class="field-name animated delay-0s {{comeOutAnimation}}" *ngIf="!openedCategory[1]">Trayectoria</p>
+			</div>
+
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 biografia" [ngClass]="{'catagory-box-wrap': !openedCategory[2]}">
+				<div class="icon-box pointer animated delay-0s {{comeOutAnimation}}"
+					[ngClass]="{'openedCategory': openedCategory[2]}"
+					(click)="openedCategory[2]=!openedCategory[2]; $event.stopPropagation();">
+					<div class="icon-field">
+
+						<img class="material-icons" src="../../app/assets/img/Bio.svg">
+					</div>
+					<div class="text" *ngIf="openedCategory[2]">
+						<p class="name">Biografía</p>
+					</div>
+					<div class="contents" *ngIf="openedCategory[2]">
+						{{jugador.historia}}
+					</div>
+				</div>
+				<p class="field-name animated delay-0s {{comeOutAnimation}}" *ngIf="!openedCategory[2]">Biografía</p>
+			</div>
+		</div>
+		<div class="second-row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 user" style="z-index: 1000;">
+				<div class="animated delay-0s {{comeOutAnimation}}">
+					<div class="arrow-back">
+						<button mat-fab (click)="previousProfile()"><i class="material-icons black-arrow">arrow_back</i></button>
+					</div>
+
+					<div class="user-info">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 user-img">
+							<img *ngIf="! jugador.link_img" src="app/assets/img/default.png" class="profileTableImg">
+							<img *ngIf="jugador.link_img" src="{{ serverUrl +'/storage/profiles/' + jugador.link_img}}"
+								class="profileTableImg">
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 user-name">{{jugador.nombre}}</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 user-position {{jugador.posicion}}">
+							{{jugador.posicion}}
+						</div>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 desk-user-want-btn">
+							<div class="select-button-wrap animated delay-0s {{comeOutAnimation}}">
+								<div class="select-button-bg">
+									<button mat-raised-button
+										class="select-button btn btn-blue btn-fill submitFilters col-lg-12 col-md-12 col-sm-12 col-xs-12"
+										(click)="selectPlayer()">
+										LO QUIERO!
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="arrow-forward">
+						<button mat-fab (click)="nextProfile()"><i class="material-icons black-arrow">arrow_forward</i></button>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+		</div>
+		<div class="third-row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 imagenes" [ngClass]="{'catagory-box-wrap': !openedCategory[3]}">
+				<div class="icon-box pointer animated delay-0s {{comeOutAnimation}}"
+					[ngClass]="{'openedCategory': openedCategory[3]}" (click)="openedCategory[3]=true">
+					<div class="icon-field">
+
+						<img class="material-icons" src="../../app/assets/img/img.svg">
+					</div>
+					<div class="text" *ngIf="openedCategory[3]">
+						<p class="name"> Imágenes Videos </p>
+					</div>
+					<i *ngIf="openedCategory[3]" (click)="openedCategory[3]=false; $event.stopPropagation();"
+						class="close-icon material-icons pointer animated delay-1s {{comeOutAnimation}}">close</i>
+					<div class="gallerey-image-box" *ngIf="openedCategory[3]">
+						<app-photo-swipe></app-photo-swipe>
+					</div>
+				</div>
+				<p class="field-name animated delay-0s {{comeOutAnimation}}" *ngIf="!openedCategory[3]">Imágenes Videos
+				</p>
+			</div>
+
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 valucation" [ngClass]="{'catagory-box-wrap': !openedCategory[4]}">
+				<div class="icon-box pointer animated delay-0s {{comeOutAnimation}}"
+					[ngClass]="{'openedCategory': openedCategory[4]}" (click)="openedCategory[4]=!openedCategory[4]">
+					<div class="icon-field">
+
+						<img class="material-icons" src="../../app/assets/img/Valuacion.svg">
+					</div>
+					<div class="text" *ngIf="openedCategory[4]">
+						<p class="name">Valuación Estimada</p>
+					</div>
+					<div class="contents" *ngIf="openedCategory[4]">
+						Proximamente
+					</div>
+				</div>
+				<p class="field-name animated delay-0s {{comeOutAnimation}}" *ngIf="!openedCategory[4]">Valuacion</p>
+			</div>
+
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 redes" [ngClass]="{'catagory-box-wrap': !openedCategory[5]}">
+				<div class="icon-box pointer animated delay-0s {{comeOutAnimation}}"
+					[ngClass]="{'openedCategory': openedCategory[5]}" (click)="openedCategory[5]=!openedCategory[5]">
+					<div class="icon-field">
+						<i class="material-icons"> {{iconName[5]}} </i>
+
+					</div>
+					<div class="text" *ngIf="openedCategory[5]">
+						<p class="name">Redes</p>
+					</div>
+					<div class="contents" *ngIf="openedCategory[5]">
+						Proximamente
+					</div>
+				</div>
+				<p class="field-name animated delay-0s {{comeOutAnimation}}" *ngIf="!openedCategory[5]">Redes</p>
+			</div>
+		</div>
+	</div>
+
+	<!-- mobile-version -->
+	<div class="user-profile-page-small" *ngIf="is_details_loaded">
+		<div class="first-row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div class="user-info-small animated delay-0s {{comeOutAnimation}}">
+				<div class="small-button pointer" (click)="previousProfile()">
+					<div><i class="material-icons">keyboard_arrow_left</i></div>
+				</div>
+				<div class="profileImg fill-remaining-space ">
+					<img *ngIf="! jugador.link_img" src="app/assets/img/default.png">
+					<img *ngIf="jugador.link_img" src="{{ serverUrl +'/storage/profiles/' + jugador.link_img}}">
+					<div class="user-info">
+						<!-- <div class="user-name">{{jugador.nombre}}</div>
+						<div class="user-position {{jugador.posicion}}">
+							{{jugador.posicion}}
+						</div> -->
+						<div class="user-name">{{"pre"+preX}}</div>
+						<div class="user-position {{jugador.posicion}}">
+							{{'cur'+curX + ',,' + selected_category}}
+						</div>
+					</div>
+				</div>
+				<div class="small-button pointer" (click)="nextProfile()">
+					<div><i class="material-icons">keyboard_arrow_right</i></div>
+				</div>
+			</div>
+		</div>
+		<div style="height: 0px; width: 0px;">
+			<app-photo-swipe></app-photo-swipe>
+		</div>
+		<div class="ball-list" *ngIf="selected_category == -1">
+			<div class="second-row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 ball">
+					<div class="icon-box pointer animated delay-0s {{comeOutAnimation}}"
+						[ngClass]="{'highlighted': ball_index == 0}" (click)="selectCategory(0)">
+						<div class="icon-field">
+							<i class="material-icons"> {{iconName[0]}} </i>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 ball">
+					<div class="icon-box pointer animated delay-0s {{comeOutAnimation}}"
+						[ngClass]="{'highlighted': ball_index == 1}" (click)="selectCategory(1)">
+						<div class="icon-field">
+
+							<img class="material-icons" src="../../app/assets/img/Trayectoria.svg">
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 ball">
+					<div class="icon-box pointer animated delay-0s {{comeOutAnimation}}"
+						[ngClass]="{'highlighted': ball_index == 2}" (click)="selectCategory(2)">
+						<div class="icon-field">
+
+							<img class="material-icons" src="../../app/assets/img/Bio.svg">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="third-row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 ball">
+					<div class="icon-box pointer animated delay-0s {{comeOutAnimation}}"
+						[ngClass]="{'highlighted': ball_index == 3}" (click)="selectCategory(3)">
+						<div class="icon-field">
+
+							<img class="material-icons" src="../../app/assets/img/img.svg">
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 ball">
+					<div class="icon-box pointer animated delay-0s {{comeOutAnimation}}"
+						[ngClass]="{'highlighted': ball_index == 4}" (click)="selectCategory(4)">
+						<div class="icon-field">
+
+							<img class="material-icons" src="../../app/assets/img/Valuacion.svg">
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 ball">
+					<div class="icon-box pointer animated delay-0s {{comeOutAnimation}}"
+						[ngClass]="{'highlighted': ball_index == 5}" (click)="selectCategory(5)">
+						<div class="icon-field">
+							<i class="material-icons"> share </i>
+							<!-- <img class="material-icons" src="../../app/assets/img/.svg"> -->
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="fouth-row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div *ngIf="index < 7" ng2-carouselamos [width]="300" [items]="ballName" [$item]="itemTemplate"
+					[$prev]="prevTemplate" [$next]="nextTemplate"></div>
+				<ng-template #prevTemplate>
+					<div #previous style="display: none"></div>
+				</ng-template>
+				<ng-template #nextTemplate>
+					<div #next style="display: none"></div>
+				</ng-template>
+				<ng-template let-item let-i="index" #itemTemplate>
+					<div style="width: 300px; height: 50px;">
+						<div class="item"> {{item}} </div>
+					</div>
+				</ng-template>
+			</div>
+		</div>
+		<div *ngIf="selected_category >= 0" class="category-list animated delay-0s {{comeOutAnimation}}">
+			<div ng2-carouselamos class="category" [items]="categoryName" [$item]="itemTemplate" [$prev]="prevTemplate"
+				[$next]="nextTemplate" (onMouseUp)="onMouseUp($event)" (onMouseDown)="onMouseDown($event)"
+				(onSelectedItem)="onSelectedItem($evnet)"></div>
+			<ng-template #prevTemplate>
+				<div #previous_category style="display: none"></div>
+			</ng-template>
+			<ng-template #nextTemplate>
+				<div #next_category style="display: none"></div>
+			</ng-template>
+			<ng-template let-item let-i="index" #itemTemplate>
+				<div #categoryList class="item">
+					<app-category [jugador]="jugador" [category_index]="i" [selected_index]="selected_category" [eventUp]="eventUp"
+						[eventDown]="eventDown" (categoryClosed)="closeCategory()" (ngtouch)="closeCategory()">
+					</app-category>
+				</div>
+			</ng-template>
+		</div>
+		<div class="select-button-wrap animated delay-0s {{comeOutAnimation}}">
+			<div class="select-button-bg">
+				<button mat-raised-button (click)="selectPlayer()"
+					class="select-button btn btn-blue btn-fill submitFilters col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					LO QUIERO!
+				</button>
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="dialog-wrap" *ngIf="selected_dialog == 0" (click)="selected_dialog = -1">
+		<div class="dialog-list animated delay-0s {{comeOutAnimation}}">
+			<div class="dialog">
+				<div class="dialog-box pointer animated delay-0s {{comeOutAnimation}}" (click)="$event.stopPropagation()">
+					<div class="box">
+						<div class="icon-field">
+							<i class="material-icons"> list_alt </i>
+							<p class="fill-remaining-space dialog-title">Solictud de Reserva</p>
+							<mat-icon class="close-icon" (click)="selected_dialog = -1"> close </mat-icon>
+						</div>
+						<div class="contents">
+							<p>
+								Has solictud contactar al judadores {{selectePlayerName}}.
+								Por favor danos tu confirmacion para continuar.
+							</p>
+
+						</div>
+						<div class="continue-btn-wrap animated delay-0s {{comeOutAnimation}}">
+							<button mat-raised-button (click)="requestPlayer()"
+								class="top-continue-button btn btn-blue btn-fill submitFilters">
+								CONTINUAR
+							</button>
+						</div>
+						<div class="cancel-btn-wrap animated delay-0s {{comeOutAnimation}}">
+							<button mat-raised-button (click)="cancelRequest()"
+								class="top-cancel-button btn btn-blue btn-fill submitFilters">
+								Cancelar
+							</button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="dialog-wrap" *ngIf="selected_dialog == 1" (click)="selected_dialog = -1">
+		<div class="dialog-list animated delay-0s {{comeOutAnimation}}">
+			<div class="dialog">
+				<div class="dialog-box pointer animated delay-0s {{comeOutAnimation}}" (click)="$event.stopPropagation()">
+					<div class="box">
+						<div class="icon-field">
+							<p class="fill-remaining-space dialog-title">{{title}}</p>
+							<mat-icon class="close-icon" (click)="selected_dialog = -1"> close </mat-icon>
+						</div>
+						<div class="contents">
+							<p> {{message}} </p>
+						</div>
+						<div class="continue-btn-wrap animated delay-0s {{comeOutAnimation}}">
+							<button mat-raised-button (click)="requestPlayerFinish()"
+								class="top-continue-button btn btn-blue btn-fill submitFilters">
+								CONTINUAR
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

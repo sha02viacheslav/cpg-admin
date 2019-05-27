@@ -1,0 +1,48 @@
+.back-black {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: #000;
+}
+
+.main-panel{
+    height: 100%;
+}
+
+.hide-serach {
+    display: none;
+}
+
+@media (min-width: 769px) {
+    .search-box {
+        display: none;
+    }
+}
+.main-panel>.content {
+    padding-top: unset;
+}
+@media (max-width: 768px) {
+    form {
+        padding: 0px 7%;
+    }
+    #video{
+        left: -520px;
+    }
+}
+
+.video{
+    position: absolute;
+}
+
+
+#video{
+    position: fixed;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    background: url('https://www.clickpassgoal.com/video/placeholder.jpg') no-repeat;
+    background-size: cover;
+    opacity: 0.8;
+}

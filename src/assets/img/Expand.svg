@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="8px" height="14px" viewBox="0 0 8 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.4 (67378) - http://www.bohemiancoding.com/sketch -->
+    <title>Shape</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1.-Dashboard_mobile_exp" transform="translate(-304.000000, -232.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <g id="filtros" transform="translate(-23.000000, 66.000000)">
+                <g id="btn_filter" transform="translate(321.000000, 93.000000)">
+                    <polygon id="Shape" transform="translate(9.867747, 79.999800) scale(-1, -1) translate(-9.867747, -79.999800) " points="6.7355537 86.9996 6 86.2640463 12.2642463 79.9998 6 73.7355537 6.7355537 73 13.7354937 79.99994"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

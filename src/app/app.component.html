@@ -1,0 +1,31 @@
+<div fxFlex="auto">
+	<div class="wrapper">
+		<!-- Video BG -->
+		<div class="back-black">
+			<video id="video" class="video" muted="muted" controls="true" loop="loop" preload="auto" autoplay="autoplay" playsinline>
+				<source src="/app/assets/video/stars.mp4" type="video/mp4">
+				Your browser does not support HTML5 video.
+			</video>
+		</div>
+		<div>
+			<app-navigation (filterData)="onFilter($event)" [search]="search"></app-navigation>
+		</div>
+		<div class="main-panel" id="main-nicescrollable">
+			<app-header></app-header>
+			<div class="content">
+				<div class="container-fluid">
+					<!-- <form [formGroup]="filterForm" (ngSubmit)="onSubmit()" class="search-box">
+						<div class="form-group">
+							<mat-form-field class="form-control customInput animated delay-0s"
+								[ngClass]="{'fadeOut': pageStatusService.getStatus()!='user-lists', 'fadeIn': pageStatusService.getStatus()=='user-lists'}">
+								<input matInput type="text" formControlName="search" placeholder="Buscar" id="search"
+									[(ngModel)]="search">
+							</mat-form-field>
+						</div>
+					</form> -->
+					<router-outlet #o="outlet"></router-outlet>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

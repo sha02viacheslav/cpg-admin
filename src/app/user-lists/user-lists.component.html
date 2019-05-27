@@ -1,0 +1,85 @@
+<div class="row clear">
+    <div class="col-sm-12">
+        <div class="lds-roller" *ngIf="!is_details_loaded">
+        </div>
+        <div class="card" *ngIf="is_details_loaded">
+            <div class="card-header">
+                <h2 class="page-header center">
+                    Mis Jugadores
+                    Jugadores
+                </h2>
+            </div>
+            <div class="card-body">
+                <div class="listaJugadores">
+                    <div *ngFor="let jugador of user_lists; let i = index">
+                        <div class="animated jugador hasLink"
+                            [ngClass]="{'pulse': i == selected_index, 'jackInTheBox': i != selected_index}"
+                            (click)="gotoUserProfile(jugador, i)">
+                            <div class="perfilImagen">
+                                <img *ngIf="!jugador.link_img" src="app/assets/img/default.png" class="profileTableImg">
+                                <img *ngIf="jugador.link_img"
+                                    src="{{ serverUrl +'/storage/profiles/' + jugador.link_img}}"
+                                    class="profileTableImg">
+                                <div class="mediaIcons">
+                                    <i *ngIf="jugador.link_video != '0'" class="material-icons"> play_circle_filled </i>
+                                </div>
+                            </div>
+                            <div class="perfilDetalle">
+                                <div class="col-sm-12 nombreBox">
+                                    <h2> {{ jugador.nombre }}</h2>
+                                </div>
+                                <div class="col-sm-6 npPdRight ">
+                                    <span class="posicion {{jugador.posicion}}"> {{jugador.posicion}}</span>
+                                </div>
+                                <div class="col-sm-6 smallPdLeft npPdRight">
+                                    <span class="ubicacion lightBlue">
+                                        {{getUbicacion(jugador.provincia, jugador.code)}}</span>
+                                </div>
+                                <div class="col-sm-4 npPdRight">
+                                    <span class="subHeader"> Edad</span>
+                                    <span class="detalle"> {{ jugador.edad }}</span>
+                                </div>
+                                <div class="col-sm-4  smallPdLeft npPdRight">
+                                    <span class="subHeader"> Altura</span>
+                                    <span class="detalle"> {{ jugador.altura }}</span>
+                                </div>
+                                <div class="col-sm-4 smallPdLeft ">
+                                    <span class="subHeader"> Peso</span>
+                                    <span class="detalle"> {{ jugador.peso }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="animated delay-0s jugador-small hasLink"
+                            [ngClass]="{'pulse': i == selected_index, 'jackInTheBox': i != selected_index}"
+                            (click)="gotoUserProfile(jugador, i)">
+                            <div class="perfilImagen">
+                                <img *ngIf="! jugador.link_img" src="app/assets/img/default.png"
+                                    class="profileTableImg">
+                                <img *ngIf="jugador.link_img"
+                                    src="{{ serverUrl +'/storage/profiles/' + jugador.link_img}}"
+                                    class="profileTableImg">
+                            </div>
+                            <div class="media-tag">
+                                <i *ngIf="jugador.link_video != '0'" class="material-icons"> play_circle_filled </i>
+                            </div>
+                            <div class="perfilDetalle">
+                                <div class="col-sm-12 nombreBox">
+                                    <p> {{ jugador.nombre }} </p>
+                                </div>
+                                <div class="col-sm-6 npPdRight ">
+                                    <span class="posicion {{jugador.posicion}}"> {{jugador.posicion}}</span>
+                                </div>
+                                <div class="col-sm-6 smallPdLeft npPdRight">
+                                    <span class="ubicacion lightBlue">
+                                        {{getUbicacion(jugador.provincia, jugador.code)}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 *ngIf="user_lists.length == 0">No se encontraron jugadores.</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

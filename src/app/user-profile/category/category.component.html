@@ -1,0 +1,114 @@
+<div class="profile icon-box pointer animated delay-0s {{comeOutAnimation}} opened"
+	[ngClass]="{'closed': category_index != 0, 'highlighted': selected_index == 0}">
+	<div class="icon-field">
+		<i class="material-icons">info_outline</i>
+	</div>
+	<div class="text">
+		<p class="name">Perfil</p>
+		<div>
+			<p class="name">Proximamente</p>
+			<p class="title">Ubicación</p>
+			<p>{{getUbicacion(jugador.provincia, jugador.code)}}</p>
+		</div>
+		<div>
+			<p class="title">Pasaporte</p>
+			<p>aaa</p>
+		</div>
+		<div>
+			<p class="title">Fecha de Nacimiento</p>
+			<p>{{jugador.fecha_nacimiento ? jugador.fecha_nacimiento : "24 Abril 1990"}}</p>
+		</div>
+		<div>
+			<p class="title">
+				<span>Edad</span>
+				<span>Altura</span>
+				<span>Peso</span>    
+			</p>
+			<p>
+				<span>{{jugador.edad}}</span>
+				<span>{{formatHeight(jugador.altura)}}</span>
+				<span>{{jugador.peso}}</span>
+			</p>
+		</div>
+	</div>
+	<i *ngIf="category_index == 0" #closeBtn class="close-icon material-icons pointer">close</i>
+</div>
+
+<div class="trayectoria icon-box pointer animated delay-0s {{comeOutAnimation}} opened"
+	[ngClass]="{'closed': category_index != 1, 'highlighted': selected_index == 1}">
+	<div class="icon-field">
+		<img class="material-icons" src="../../app/assets/img/Trayectoria.svg">
+	</div>
+	<div class="text">
+		<p class="name">Trayectoria</p>
+	</div>
+	<div class="contents">
+		<p>
+			{{jugador.club}}
+		</p>
+	</div>
+	<i *ngIf="category_index == 1" #closeBtn class="close-icon material-icons pointer">close</i>
+</div>
+<div class="biografia icon-box pointer animated delay-0s {{comeOutAnimation}} opened"
+	[ngClass]="{'closed': category_index != 2, 'highlighted': selected_index == 2}">
+	<div class="box">
+		<div class="icon-field">
+			<!-- <i class="material-icons">list_alt</i> -->
+			<img class="material-icons" src="../../app/assets/img/Bio.svg">
+		</div>
+		<div class="text">
+			<p class="name">Biografía</p>
+		</div>
+		<div class="contents">
+			<p>
+				{{jugador.historia}}
+			</p>
+		</div>
+	</div>
+	<i *ngIf="category_index == 2" #closeBtn class="close-icon material-icons pointer">close</i>
+</div>
+
+<div class="imagenes icon-box pointer animated delay-0s {{comeOutAnimation}} opened"
+	[ngClass]="{'closed': category_index != 3, 'highlighted': selected_index == 3}">
+	<div class="icon-field">
+		<img class="material-icons" src="../../app/assets/img/img.svg">
+	</div>
+	<div class="text">
+		<p class="name">ImágenesVideos</p>
+	</div>
+	<div class="contents">
+		<div class="gallerey-image-box">
+
+			<app-photo-swipe></app-photo-swipe>
+
+		</div>
+	</div>
+	<i *ngIf="category_index == 3" #closeBtn class="close-icon material-icons pointer">close</i>
+</div>
+<div class="valucation icon-box pointer animated delay-0s {{comeOutAnimation}} opened"
+	[ngClass]="{'closed': category_index != 4, 'highlighted': selected_index == 4}">
+	<div class="icon-field">
+		<img class="material-icons" src="../../app/assets/img/Valuacion.svg">
+	</div>
+	<div class="text">
+		<p class="name">Valuación Estimada</p>
+	</div>
+	<div class="contents">
+		<p class="name">Proximamente</p>
+	</div>
+	<i *ngIf="category_index == 4" #closeBtn class="close-icon material-icons pointer">close</i>
+</div>
+
+<div class="valucation icon-box pointer animated delay-0s {{comeOutAnimation}} opened"
+	[ngClass]="{'closed': category_index != 5, 'highlighted': selected_index == 5}">
+	<div class="icon-field">
+		<i class="material-icons">share</i>
+	</div>
+	<div class="text">
+		<p class="name">Redes</p>
+	</div>
+	<div class="contents">
+		Proximamente
+	</div>
+	<i *ngIf="category_index == 5" #closeBtn class="close-icon material-icons pointer">close</i>
+</div>

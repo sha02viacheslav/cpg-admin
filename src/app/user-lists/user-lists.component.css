@@ -1,0 +1,71 @@
+@media (max-width: 768px) {
+    .listaJugadores .jugador {
+        display: none;
+    }
+}
+
+@media (min-width: 769px) {
+    .listaJugadores .jugador-small {
+        display: none;
+    }
+}
+
+.listaJugadores .jugador-small {
+    height: 87px;
+    width: 270px;
+    border-radius: 4px;
+    background: rgba(0,0,0,0.44);
+    box-shadow: 0 2px 13px 0 rgba(0,0,0,0.6);
+    padding: 0px 12px;  
+    margin-bottom: 8px;
+}
+
+.listaJugadores .jugador-small .profileTableImg {
+    margin-top: 8px;
+    margin-right: 39px;
+    width: 70px;
+    height: 70px;
+    float: left;
+}
+
+.listaJugadores .jugador-small .perfilDetalle {
+    border-radius: 4px;
+    padding: 5px 0px;
+    background: unset;
+    overflow: hidden;
+    box-shadow: unset;
+}
+
+.listaJugadores .jugador-small .media-tag {
+    position: absolute;
+    margin-left: 90px;
+    height: 100%;
+    width: 16px;
+    padding: 8px 0px;
+}
+
+.listaJugadores .jugador-small .media-tag .material-icons {
+    font-size: 16px;
+}
+
+.listaJugadores .jugador-small .nombreBox {
+    margin: unset;
+    padding: unset
+}
+
+.listaJugadores .jugador-small .nombreBox p {
+    color: #FFFFFF;
+    font-family: Karla;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 20px;
+    margin: unset;
+}
+
+.listaJugadores .jugador-small .npPdRight {
+    padding: unset;
+}
+
+.col-sm-12 {
+    width: 100%;
+}

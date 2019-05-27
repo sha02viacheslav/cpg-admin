@@ -1,0 +1,104 @@
+<div #filterMenu class="row filter-menu">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 sidePd1">
+		<form [formGroup]="filterForm" (ngSubmit)="onSubmit()">
+			<div class="form-group filterMainHeader">
+				<h3><i class="fas fa-sliders-h gold icons1"></i>Filtros </h3>
+			</div>
+			<div class="form-group search">
+				<mat-form-field class="form-control customInput">
+					<input matInput type="text" formControlName="search" placeholder="Buscar" id="search"
+						[(ngModel)]="search">
+				</mat-form-field>
+			</div>
+			<div class="form-group filterHeader">
+				<label class="filterLabel gold"> Edad</label>
+			</div>
+			<div class="form-group">
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<mat-form-field class="form-control customInput">
+							<input matInput type="text" formControlName="fromAge" placeholder="Mínimo" id="fromAge">
+						</mat-form-field>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<mat-form-field class="form-control customInput">
+							<input matInput type="text" formControlName="toAge" placeholder="Maximo" id="toAge">
+						</mat-form-field>
+					</div>
+				</div>
+			</div>
+			<div class="form-group filterHeader">
+				<label class="filterLabel gold"> Posición</label>
+			</div>
+			<div class="form-group">
+				<!-- <select class="form-control select2NoSearch customInput" formControlName="posicion" id="posicion" required>
+            <option value="college">Ajay Kumar Garg Engineering College</option>
+            <option value="others">Others- Please Specify Below</option>
+        </select> -->
+				<mat-select *ngIf="is_details_loaded" class="form-control select2NoSearch customInput"
+					formControlName="position" id="position" required>
+					<mat-option *ngFor="let position of positionDatas; let i = index" value="{{i}}"
+						(click)="onSubmit()">{{position}}</mat-option>
+				</mat-select>
+				<!-- {{Form::select('posicion',$posiciones, null, ['class' => 'form-control select2NoSearch    customInput' , 'id' => 'posicion'])}} -->
+			</div>
+			<div class="form-group filterHeader">
+				<label class="filterLabel gold"> Altura</label>
+			</div>
+			<div class="form-group">
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<mat-form-field class="form-control customInput">
+							<input matInput type="text" formControlName="fromHeight" placeholder="Mínimo"
+								id="fromHeight">
+						</mat-form-field>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<mat-form-field class="form-control customInput">
+							<input matInput type="text" formControlName="toHeight" placeholder="Maximo" id="toHeight">
+						</mat-form-field>
+					</div>
+				</div>
+			</div>
+			<div class="form-group filterHeader">
+				<label class="filterLabel gold"> Peso</label>
+			</div>
+			<div class="form-group">
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<mat-form-field class="form-control customInput">
+							<input matInput type="text" formControlName="fromWeight" placeholder="Mínimo"
+								id="fromWeight">
+						</mat-form-field>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<mat-form-field class="form-control customInput">
+							<input matInput type="text" formControlName="toWeight" placeholder="Maximo" id="toWeight">
+						</mat-form-field>
+					</div>
+				</div>
+			</div>
+			<div class="form-group filterHeader">
+				<label class="filterLabel gold"> Video</label>
+			</div>
+			<div class="form-group">
+				<div class="customCheckBox">
+					<mat-checkbox type="checkbox" formControlName="video" class="checkmark" id="checkvideo"
+						(change)="onSubmit()"></mat-checkbox>
+					<!-- {{Form::checkbox('video', 1, null, ['class' => 'form-check-input','placeholder' => 'Maximo'  , 'id' => 'hastaPeso'])}} -->
+					<!-- <span class="checkmark"></span> -->
+					<label class="white"> Sólo jugadores con video</label>
+				</div>
+
+			</div>
+			<div class="form-group">
+				<button mat-raised-button type="submit" class="btn btn-blue btn-fill submitFilters"
+					id="submitForm">Aplicar Filtros</button>
+			</div>
+		</form>
+	</div>
+	<div *ngIf="pageStatusService.getStatus()!='user-profile'" class="popup-button" [ngClass]="{'opened': menu_opened}"
+		(click)="onClickPopupButton()">
+		<div class="popup-button-icon"></div> Filtros
+	</div>
+</div>

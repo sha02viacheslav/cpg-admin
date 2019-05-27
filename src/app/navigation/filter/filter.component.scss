@@ -1,0 +1,133 @@
+.filter-menu {
+    font-family: Karla;
+}
+::ng-deep .ng-star-inserted,
+::ng-deep .mat-select-arrow {
+    color: #A4A4A4 !important;
+}
+
+::ng-deep .mat-select-trigger {
+    padding-top: 6px;
+    height: 2.125em;
+    padding-bottom: 5px;
+}
+
+::ng-deep .mat-checkbox-inner-container-no-side-margin {
+    width: 21px !important;
+    height: 21px !important;
+    border: 1px solid #fff;
+    border-radius: 4px !important;
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-label {
+    margin-top: -9px;
+    margin-left: 17px;
+    font-size: 14px;
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+    padding-bottom: 0.8em;
+}
+
+::ng-deep .mat-form-field {
+    padding: unset;
+}
+
+::ng-deep input.mat-input-element {
+    margin-top: -17px;
+    height: 34px;
+    min-height: 10px;
+    padding-left: 15px;
+    letter-spacing: 1px !important;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background-color: unset !important;
+}
+
+::ng-deep .mat-checkbox-ripple.mat-ripple .mat-ripple-element {
+    background-color: green !important;
+}
+
+::ng-deep .mat-checkbox-checkmark-path {
+    stroke: #00ff00!important;
+    stroke-width: 3.6px !important;
+}
+
+::ng-deep .mat-option-text {
+    opacity: 0.7;
+    font-weight: 600;
+}
+.form-group {
+    max-height: 48px !important;
+}
+
+.full-width {
+    widows: 100%;
+}
+
+@media (min-width: 769px) {
+    .popup-button {
+        display: none !important;
+    }
+}
+
+.popup-button {
+    height: 22px;
+    width: 95px;
+    padding: 0px 7px;
+    border-radius: 0 0px 10px 10px;
+    background-color: rgba(0,0,0,0.8);
+    box-shadow: 0 2px 13px 0 rgba(0,0,0,0.6);
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    position: fixed;
+    top: 190px;
+    left: -37px;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 17px;
+    -webkit-transition: left .4s ease-in-out;
+    -moz-transition: left .4s ease-in-out;
+    -o-transition: left .4s ease-in-out;
+    -ms-transition: left .4s ease-in-out;
+    transition: left .4s ease-in-out;
+    display: flex;
+    align-items: center;
+    .popup-button-icon{
+        background: url('/assets/img/Filter-vertical.svg') no-repeat 5px !important;
+        width: 25px !important;
+        height: 100% !important;
+    }
+}
+
+.popup-button.opened {
+    left: 283px;
+}
+
+@media (max-width: 768px) {
+    .search {
+        display: none;
+    }
+
+    .filterMainHeader h3 {
+        margin: unset;
+        margin-top: 17px;
+    }
+
+    .filterMainHeader {
+        padding-bottom: 1px;
+    }
+
+    form .form-group {
+        margin: 6px 0 0;
+    }
+}
+
+.row{
+    display: flex;
+}
